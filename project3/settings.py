@@ -82,14 +82,14 @@ WSGI_APPLICATION = 'project3.wsgi.application'
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'project3',
-    'USER': 'contact.tylernbui',
-    'PASSWORD': 'hPaEiYum87wB',
-    'HOST': 'ep-ancient-tooth-02507340.us-east-2.aws.neon.tech',
+    'NAME': 'Yapp',
+    'USER': 'manucharyand',
+    'PASSWORD': 'kXVzs9yYjm3L',
+    'HOST': 'ep-fancy-field-62824329.us-west-2.aws.neon.tech',
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
-}
+} 
 
 
 # Password validation
