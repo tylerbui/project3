@@ -83,9 +83,9 @@ DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'Yapp',
-    'USER': 'manucharyand',
-    'PASSWORD': 'kXVzs9yYjm3L',
-    'HOST': 'ep-fancy-field-62824329.us-west-2.aws.neon.tech',
+    'USER': os.environ['DB_USER'],
+    'PASSWORD': os.environ['DB_PW'],
+    'HOST': os.environ['DB_HOST'],
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
