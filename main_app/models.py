@@ -18,7 +18,7 @@ class Post(models.Model):
     def __str__(self):
         return f'{self.name} ({self.id})'
     
-class Comment(Post):
+class Comment(models.Model):
     content = models.TextField()
     image = models.URLField()
     post = models.ManyToManyField(Post)
