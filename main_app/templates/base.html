@@ -1,29 +1,46 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Project 3</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- CDN for font-awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-..." crossorigin="anonymous" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  <title>Y</title>
 </head>
+
 <body>
-  <header class="navbar-fixed">
+
+  <header>
+    <div class="logo">
+      <a href="#">Y</a>
+    </div>
+
     <nav>
-      <div class="nav-wrapper">
-        <ul>
-          <li><a href="/" class="left brand-logo">&nbsp;&nbsp;Project 3</a></li>
-        </ul>
-      </div>
+      <a class="active" href="#"><i class="fas fa-home"></i></a>
+      <a href="#"><i class="fas fa-search"></i></a>
+      <a href="#"><i class="far fa-edit"></i>
+      </a>
+      <a href="#"><i class="fas fa-heart"></i></a>
+      <a href="#"><i class="fas fa-user"></i></a>
     </nav>
+
+    <div class="icon">
+      <a href="#"><i class="fas fa-moon"></i></a>
+    </div>
   </header>
+
   <main class="container">
     {% block content %}
     {% endblock %}
   </main>
   <footer class="page-footer">
-    <div class="right">All Rights Reserved, &copy; 2024 Project 3 &nbsp;</div>
+    <div class="right">All Rights Reserved &copy; 2024 Y &nbsp;</div>
   </footer>
 </body>
+
 </html>
