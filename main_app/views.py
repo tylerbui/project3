@@ -12,6 +12,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 def home(request):
     return render(request, 'home.html')
 
+def profile(request):
+    return render(request, 'profile.html')
+
 
 # Assigning post to a user 
 # create a class 
