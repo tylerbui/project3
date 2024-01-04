@@ -92,3 +92,15 @@ footer {
         padding: 4px;
     }
 }
+
+/* Profile Page */
+.profile-header {
+    display: grid;
+    align-items: center;
+}
+.profile-tabs {
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid #ccc;
+    padding: 20px;
+    text-align: center;
+}
