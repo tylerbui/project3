@@ -83,13 +83,13 @@ DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'Yapp',
-    'USER': 'manucharyand',
-    'PASSWORD': 'kXVzs9yYjm3L',
-    'HOST': 'ep-fancy-field-62824329.us-west-2.aws.neon.tech',
+    'USER': os.environ['DB_USER'],
+    'PASSWORD': os.environ['DB_PASSWORD'],
+    'HOST': os.environ['DB_HOST'],
     'PORT': '5432',
     'OPTIONS': {'sslmode': 'require'},
   }
-} 
+}
 
 
 # Password validation
@@ -127,6 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+LOGIN_REDIRECT_URL = '/posts/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
