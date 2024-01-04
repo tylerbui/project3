@@ -10,6 +10,13 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
 
+    # For Ian to Finish AWS and Boto
+    # class Photo(models.Model):
+    #     url = models.CharField(max_length=200)
+    #     post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name} ({self.id})'
     
 class Comment(models.Model):
     content = models.TextField()
