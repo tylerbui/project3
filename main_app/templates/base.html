@@ -33,7 +33,10 @@
     <div class="icon">
       <a href="#"><i class="fas fa-moon"></i></a>
     </div>
-    <a href="{% url 'logout' %}">Log Out</a>
+    <form action="{% url 'logout' %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Log Out</button>
+    </form>
     {% else %}
       <a href="{% url 'signup' %}">Sign Up</a>
       <a href="{% url 'login' %}">Log In</a>
