@@ -1,16 +1,29 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login 
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.decorators import login_required
 #Remember to Include @login_required for certain classes in this view *** 
 from django.contrib.auth.mixins import LoginRequiredMixin
 #Remember to Include LoginRequiredMixin as a parameter to the classes that need it (ex. CreateView) (Class Base Views)
+from .models import Post
 
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
+
+def create_post(request):
+  posts = Post.objects.all()
+  return render(request, 'main_app/create_post.html', {
+    'posts': posts
+  })
+
+class PostCreate(CreateView):
+  model = Post
+  fields = ['content']
 
 
 # Assigning post to a user 
