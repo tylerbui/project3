@@ -1,10 +1,7 @@
 :root {
-    --main-background: rgba(26, 26, 26, 1);
-    /* #1A1A1A */
-    --main-text: rgba(223, 223, 223, 1);
-    /* #DFDFDF */
-    --secondary-text: rgba(102, 102, 102, 1);
-    /* #666666 */
+    --main-background: rgba(26, 26, 26, 1); /* #1A1A1A */
+    --main-text: rgba(223, 223, 223, 1); /* #DFDFDF */
+    --secondary-text: rgba(102, 102, 102, 1); /* #666666 */
     /* --secodndary-text: rgba(50, 50, 50, 1); #323232 */
 }
 
@@ -22,6 +19,10 @@ body {
     margin: 0;
 }
 
+h1 {
+    margin-bottom: 20px;
+}
+
 header {
     background-color: rgba(26, 26, 26, 0.6);
     color: var(--secondary-text);
@@ -31,6 +32,7 @@ header {
     width: 75%;
     align-items: center;
     margin: 0 auto;
+    /* font-size: 2vmin; */
 }
 
 .logo {
@@ -126,6 +128,7 @@ span.helptext {
 
 body>main>form>ul {
     font-size: 1.5vmin;
+    text-align: left;
     color: var(--secondary-text)
 }
 
@@ -145,15 +148,72 @@ body>main>form>ul {
     color: #000;
 }
 
-h1 {
-    margin-bottom: 20px;
+body > main > form > button {
+    width: 100%;
 }
+
+
+/* HOME PAGE / GLOBAL POSTS */
+
+.post-container {
+    width: 364px;
+    background-color: white;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-image {
+    width: 100%;
+    display: block;
+}
+
+.user-info {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.post-time {
+    color: #555;
+    font-size: 0.9em;
+}
+
+.post-interactions {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.like-button,
+.share-button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.comment-info p {
+    color: #555;
+    font-size: 0.9em;
+}
+
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 390px) {
 
-    .logo,
-    .icon {
+    /* header {
+        font-size: 4vmin;
+    } */
+
+    .logo, .icon {
         padding: 4px 2px;
     }
 
