@@ -200,14 +200,12 @@ body > main > div > div > div.post-interactions > button:hover {
   .profilepage-profile-photo {
     width: 100px;
     border-radius: 100%;
-    background-color: #777;
     display: inline-block;
     margin-top: 20px;
   }
   
   .profile-username {
-    font-size: 24px;
-    margin-top: 10px;
+   
   }
   
   .profile-bio {
@@ -220,10 +218,11 @@ body > main > div > div > div.post-interactions > button:hover {
     margin: 20px auto;
     padding: 10px 20px;
     font-size: 16px;
-    color: black;
-    background-color: white;
-    border: none;
+    color: var(--main-text);
+    background-color: var(--main-background);
+    border: 1px solid var(--main-text);
     cursor: pointer;
+    width: 100%;
   }
   
   .content h2 {
