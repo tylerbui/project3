@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="profile-header">
-    <h3>{{profile.name}}</h3>
-    <h4>{{profile.user_name}}</h4>
-    <div class="profile-picture">{{profile.profile_picture}}</div>
-    <div class="user-bio">Biography:{{profile.bio}}
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-username">{{ user.username }}</div>
+        <div class="profile-image">
+            <img class="profilepage-profile-photo" src="{{ profile.profile_picture }}" alt="profile picture" border="0">
+        </div>
+        <div class="profile-bio">{{ profile.bio }}</div>
+        <button class="edit-profile">Edit Profile</button>
     </div>
-    <div class="profile-main">
-        <span class="profile-tabs">
-                <span class="profile-tab-post">Post</span>
-                <span class="profile-tab-reply">Replies</span>
-                <span class="profile-tab-repost">Repost</span>
-        </span>
+    <div class="content">
+        <h2>My Y's</h2>
     </div>
 </div>
 
