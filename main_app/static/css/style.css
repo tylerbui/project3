@@ -24,7 +24,7 @@ h1 {
 }
 
 header {
-    background-color: rgba(26, 26, 26, 0.9);
+    background-color: var(--main-background);
     color: var(--secondary-text);
     display:grid;
     grid-template-columns: 3fr 1fr 3fr;
@@ -41,6 +41,7 @@ header {
 .logo {
     justify-self:center;
     padding-left:1em;
+    
 }
 
 nav {
@@ -64,7 +65,7 @@ nav a {
 
 .logo a,
 .icon a {
-    color: var(--main-text);
+    color: var(--secondary-text);
     padding-top: 10px;
 }
 
@@ -209,7 +210,7 @@ body > main > form > button {
 .post-time {
     color: var(--secondary-text);
     font-size: 0.9em;
-    margin-left:200px;
+    margin-left:270px;
 }
 
 .post-text {
@@ -252,8 +253,4 @@ body > main > div > div > div.post-interactions > button:hover {
 /* MEDIA QUERIES */
 @media screen and (max-width: 490px) {
 
-  
-
-    
-    
 }
