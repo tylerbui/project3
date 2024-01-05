@@ -3,15 +3,37 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.utils import timezone
 from .models import Profile, Post, Comment
 
 def home(request):
     posts = Post.objects.all()
-    return render(request, 'home.html', {'posts': posts })
+    now = timezone.now()
+
+    posts_with_time = []
+    for post in posts:
+        time_difference = now - post.date_posted
+        seconds = time_difference.total_seconds()
+        hours = seconds // 3600
+        days = hours // 24
+        weeks = days // 7
+        years = days // 365
+
+        if hours < 24:
+            time_since = f"{int(hours)}h"
+        elif days < 7:
+            time_since = f"{int(days)}d"
+        elif days < 365:
+            time_since = f"{int(weeks)}w"
+        else:
+            time_since = f"{int(years)}y"
+
+        posts_with_time.append((post, time_since))
+
+    return render(request, 'home.html', {'posts_with_time': posts_with_time})
 
 def profile(request):
     return render(request, 'profile.html')
-
 
 def signup(request):
   error_message = ''
