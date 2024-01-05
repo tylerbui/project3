@@ -14,8 +14,9 @@ body {
     background-color: var(--main-background);
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
-    margin: 0;
+    padding-top: 50px;
 }
 
 h1 {
@@ -23,25 +24,42 @@ h1 {
 }
 
 header {
-    background-color: rgba(26, 26, 26, 0.6);
+    background-color: rgba(26, 26, 26, 0.9);
     color: var(--secondary-text);
-    padding: 6px;
-    text-align: center;
-    z-index: 1000;
-    width: 75%;
+    display:grid;
+    grid-template-columns: 3fr 1fr 3fr;
     align-items: center;
-    margin: 0 auto;
-    /* font-size: 2vmin; */
-}
+    width: 100%;
+    padding:0.5em 1em;
+    font-size: 1em;
+    position:fixed;
+    top:0; left:0;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+} 
 
 .logo {
-    float: left;
-    margin-left: 5px;
+    justify-self:center;
+    padding-left:1em;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    justify-content: center;
+    gap:10px;
+}
+
+nav a {
+    color: var(--seconadry-text);
+    text-decoration: none;
+    padding: 10px 10px;
+    display: inline-block;
 }
 
 .icon {
-    float: right;
-    margin-right: 5px;
+    justify-self: center;
+    font-size: 1em;
 }
 
 .logo a,
@@ -63,17 +81,6 @@ body > header > div.icon > form > button {
     color:var(--secondary-text);
 }
 
-nav {
-    display: inline-block;
-}
-
-nav a {
-    color: var(--seconadry-text);
-    text-decoration: none;
-    padding: 10px 20px;
-    display: inline-block;
-}
-
 a {
     text-decoration: none;
 }
@@ -88,9 +95,10 @@ a.active {
 
 main.container {
     margin: 20px 0;
-    height: 90vh;
+    
     text-align: center;
     color: var(--main-text);
+    width:400px;
 }
 
 footer {
@@ -98,6 +106,7 @@ footer {
     color: var(--secondary-text);
     margin: 10px 0;
     font-size: 1.5vmin;
+    padding: 10px;
 }
 
 
@@ -170,13 +179,16 @@ body > main > form > button {
 .post-container {
     width: 364px;
     background-color: var(--main-background);
-    margin: 20px auto;
+    margin: 0 auto;
+}
+
+.post {
+    margin: 5px 0;
     border-bottom: 1px solid var(--secondary-text);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .user-info {
-    padding: 10px;
+    padding: 10px 0;
     display: flex;
     justify-content:flex-start;
     align-items:end;
@@ -189,19 +201,26 @@ body > main > form > button {
 }
 
 .username {
-    font-size:0.9em;
-    margin-left:10px;
+    font-size:0.8em;
+    margin-left:8px;
+    font-weight:bold;
 }
 
 .post-time {
     color: var(--secondary-text);
     font-size: 0.9em;
-    margin-left:183px;
+    margin-left:200px;
+}
+
+.post-text {
+    text-align:left;
+    padding:0px 0px 8px 0px;
+    font-size: 0.8em;
+    color:rgba(255,255,255, 0.7);
 }
 
 .post-image {
     width: 100%;
-    display: block;
 }
 
 .post-interactions {
@@ -231,14 +250,10 @@ body > main > div > div > div.post-interactions > button:hover {
 
 
 /* MEDIA QUERIES */
-@media screen and (min-width: 390px) {
+@media screen and (max-width: 490px) {
 
-    .logo, .icon {
-        padding: 8px 2px;
-    }
+  
 
-    nav a {
-        padding: 8px;
-    }
+    
     
 }
