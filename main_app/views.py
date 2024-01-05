@@ -9,6 +9,9 @@ def home(request):
     posts = Post.objects.all()
     return render(request, 'home.html', {'posts': posts })
 
+def profile(request):
+    return render(request, 'profile.html')
+
 
 def signup(request):
   error_message = ''

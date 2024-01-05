@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="profile-header">
+    <h3>{{profile.name}}</h3>
+    <h4>{{profile.user_name}}</h4>
+    <div class="profile-picture">{{profile.profile_picture}}</div>
+    <div class="user-bio">Biography:{{profile.bio}}
+    </div>
+    <div class="profile-main">
+        <span class="profile-tabs">
+                <span class="profile-tab-post">Post</span>
+                <span class="profile-tab-reply">Replies</span>
+                <span class="profile-tab-repost">Repost</span>
+        </span>
+    </div>
+</div>
+
+{% endblock %}
