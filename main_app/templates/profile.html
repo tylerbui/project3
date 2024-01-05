@@ -2,10 +2,11 @@
 {% block content %}
 
 <div class="profile-header">
-    <h3>{{profile.name}}</h3>
-    <h4>{{profile.user_name}}</h4>
+    <h3>{{profile.user.name}}</h3>
+    <h4>{{profile.user.user_name}}</h4>
     <div class="profile-picture">{{profile.profile_picture}}</div>
     <div class="user-bio">Biography:{{profile.bio}}
+    <div class="edit-profile">Edit Profile</div>
     </div>
     <div class="profile-main">
         <span class="profile-tabs">
@@ -13,6 +14,33 @@
                 <span class="profile-tab-reply">Replies</span>
                 <span class="profile-tab-repost">Repost</span>
         </span>
+    </div>
+    <div class="#">
+        {% if posts %}
+        <span class="user-post">
+            {% include 'index.html' %}
+        </span>
+        {% else %}
+        <p class="no-post">No posts yet.</p>
+        {% endif %}
+    </div>
+    <div class="#">
+        {% if reply %}
+        <span class="user-reply">
+            {% include 'reply.html' %}
+        </span>
+        {% else %}
+        <p class="no-reply">No replies yet.</p>
+        {% endif %}
+    </div>
+    <div class="#">
+        {% if repost %}
+        <span class="user-repost">
+            {% include 'repost.html' %}
+        </span>
+        {% else %}
+        <p class="no-repost">No reposts yet.</p>
+        {% endif %}
     </div>
 </div>
 
