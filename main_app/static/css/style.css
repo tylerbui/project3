@@ -167,10 +167,28 @@ h1 {
    display: grid;
    grid-template-columns: auto auto auto;
    gap: 10px;
-   border: 1px solid #ccc;
    padding: 10px;
+   border-bottom-style:solid;
+   border-bottom-width:thin;
+   text-align: center;
+   margin-top: 40px;
 }
 
 .edit-profile {
-    padding: 10px
+    height: 34px;
+    padding: 10px;
+    border: 10px #fff;
+    margin-bottom: 40px;
+}
+
+.profile-tab-post {
+    grid-column: 1;
+}
+
+.profile-tab-reply {
+    grid-column: 2;
+}
+
+.profile-tab-repost {
+    grid-column: 3;
 }
