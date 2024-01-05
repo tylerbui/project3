@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Home</h1>
+
+<div class="post-container">
+        <div class="post-info">
+                <div class="user-info">
+                        <img class="post-profile-photo" src="https://i.ibb.co/PW9N1Yd/pizza-alien.jpg" alt="moto" border="0">
+                        <p class="username">someUserName</p>
+                        <p class="post-time">3h</p>
+                </div>
+                <img  class="post-image" src="https://i.ibb.co/L0r2Y5z/moto.jpg" alt="Motorcycle Rider" border="0">
+                <div class="post-interactions">
+                        <button type="submit"><i class="fa-regular fa-heart"></i></button>
+                        <button type="submit"><i class="fa-regular fa-comment"></i></button>
+                        <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
+                        <div class="comment-info">
+                                <p>10 re-ys</p>
+                        </div>
+                </div>
+        </div>
+</div>
+
 
 {% endblock %}
+
