@@ -32,8 +32,10 @@ def home(request):
 
     return render(request, 'home.html', {'posts_with_time': posts_with_time})
 
+@login_required
 def profile(request):
-    return render(request, 'profile.html')
+    profile = request.user.profile
+    return render(request, 'profile.html', {'profile': profile})
 
 def signup(request):
   error_message = ''
