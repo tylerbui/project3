@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <div class="post-container">
-        <div class="post-info">
+{% for post, time_since in posts_with_time %}
+        <div class="post">
                 <div class="user-info">
-                        <img class="post-profile-photo" src="https://i.ibb.co/PW9N1Yd/pizza-alien.jpg" alt="moto" border="0">
-                        <p class="username">someUserName</p>
-                        <p class="post-time">3h</p>
+                        <img class="post-profile-photo" src="{{ user.profile.profile_picture }}" alt="profile picture" border="0">
+                        <p class="username">{{ user.username }}</p>
+                        <p class="post-time">{{ time_since }}</p>
                 </div>
-                <img  class="post-image" src="https://i.ibb.co/L0r2Y5z/moto.jpg" alt="Motorcycle Rider" border="0">
+                <div class="post-text">{{ post.text_content }}</div>
+                <img  class="post-image" src="{{ post.post_photo }}" alt="" border="0">
                 <div class="post-interactions">
                         <button type="submit"><i class="fa-regular fa-heart"></i></button>
                         <button type="submit"><i class="fa-regular fa-comment"></i></button>
@@ -19,8 +20,7 @@
                         </div>
                 </div>
         </div>
+{% endfor %}
 </div>
 
-
 {% endblock %}
-
