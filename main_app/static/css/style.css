@@ -163,13 +163,14 @@ h1 {
 }
 
 /* Profile Page */
-.profile-header {
-    display: grid;
-    align-items: center;
-}
 .profile-tabs {
-    grid-template-columns: repeat(3, 1fr);
-    border: 1px solid #ccc;
-    padding: 20px;
-    text-align: center;
+   display: grid;
+   grid-template-columns: auto auto auto;
+   gap: 10px;
+   border: 1px solid #ccc;
+   padding: 10px;
+}
+
+.edit-profile {
+    padding: 10px
 }
