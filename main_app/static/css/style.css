@@ -50,6 +50,14 @@ header {
     padding-top: 10px;
 }
 
+body > header > div.icon > form > button > i {
+    cursor: pointer;
+}
+
+body > header > div.icon > form > button > i:hover {
+    color:var(--main-text);
+}
+
 body > header > div.icon > form > button {
     background:none; border: none;
     color:var(--secondary-text);
@@ -188,7 +196,7 @@ body > main > form > button {
 .post-time {
     color: var(--secondary-text);
     font-size: 0.9em;
-    margin-left:180px;
+    margin-left:183px;
 }
 
 .post-image {
@@ -197,8 +205,7 @@ body > main > form > button {
 }
 
 .post-interactions {
-    padding: 10px;
-    padding-left: 0px;
+    padding: 10px 0px 10px 0px;
     display: flex;
     justify-content:flex-start;
     align-items: center;
@@ -208,27 +215,30 @@ body > main > div > div > div.post-interactions > button {
     background: none;
     border:none;
     color:var(--main-text);
+    cursor: pointer;
 } 
+
+body > main > div > div > div.post-interactions > button:hover {
+    color:#fff;
+    fill: #fff;
+}
 
 .comment-info p {
     color: var(--secondary-text);
     font-size: 0.8em;
-    margin-left: 230px;
+    margin-left: 240px;
 }
 
 
 /* MEDIA QUERIES */
 @media screen and (min-width: 390px) {
 
-    /* header {
-        font-size: 4vmin;
-    } */
-
     .logo, .icon {
-        padding: 4px 2px;
+        padding: 8px 2px;
     }
 
     nav a {
-        padding: 4px;
+        padding: 8px;
     }
+    
 }
