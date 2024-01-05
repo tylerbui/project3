@@ -33,6 +33,17 @@ class Profile(models.Model):
     profile_picture = models.URLField()
     bio = models.TextField(default="Bio +") 
 
+    def __str__(self):
+        return f'{self.name} ({self.user_name})'
+
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.name} ({self.id})'
+    
 
 
 

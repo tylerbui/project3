@@ -48,7 +48,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
-      return redirect('index')
+      return redirect('/')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
