@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<span class="profile-container">
+    <span class="profile-user-info">
+        <span class="profile-username">{{ user.username }}</span>
+        <img class="profilepage-profile-photo" src="{{ profile.profile_picture }}" alt="profile picture" border="0">
+        <span class="profile-bio">{{ profile.bio }}</span>
+    </span>
+    
+    <!-- IAN CAN YOU CHECK THIS FOR ME IT SAID I HAVE A TEMPLATE DOES NOT EXIST  -->
+         <!-- EITHER URL OR VIEW IS MESSED UP OR MY PATHING FOR FORMS  -->
+         <!-- I DID GET AN ERROR THAT PATHS TO FORMS/PROFILE IN CASE YOU WANT TO CHECK THAT -->
+
+    <form action="{% url 'profile_update' pk=profile.pk %}" method="GET">
+        <button type="submit" class="edit-profile">Edit Profile</button>
+    </form>
+
+
+</span>
+<div class="content">
+    <h2>My Y's</h2>
+</div>
+
+{% if posts_with_time %}
+<div class="post-container">
+    {% for post, time_since in posts_with_time %}
+    <div class="post">
+        <div class="user-info">
+            <img class="post-profile-photo" src="{{ profile.profile_picture }}" alt="profile picture" border="0">
+            <p class="username">{{ profile.user.username }}</p>
+            <p class="post-time">{{ time_since }}</p>
+        </div>
+        <div class="post-text">{{ post.text_content }}</div>
+        <img class="post-image" src="{{ post.post_photo }}" alt="" border="0">
+        <div class="post-interactions">
+            <button type="submit"><i class="fa-regular fa-heart"></i></button>
+            <button type="submit"><i class="fa-regular fa-comment"></i></button>
+            <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
+            <div class="comment-info">
+                    <p>10 re-ys</p>
+            </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="no-post">No posts yet.</p>
+{% endif %}
+
+{% endblock %}

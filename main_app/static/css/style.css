@@ -1,11 +1,7 @@
 :root {
-    --main-background: rgba(26, 26, 26, 1);
-    /* #1A1A1A */
-    --main-text: rgba(223, 223, 223, 1);
-    /* #DFDFDF */
-    --secondary-text: rgba(102, 102, 102, 1);
-    /* #666666 */
-    /* --secodndary-text: rgba(50, 50, 50, 1); #323232 */
+    --main-background: rgba(26, 26, 26, 1); /* #1A1A1A */
+    --main-text: rgba(223, 223, 223, 1); /* #DFDFDF */
+    --secondary-text: rgba(102, 102, 102, 1); /* #666666 */
 }
 
 * {
@@ -18,46 +14,72 @@ body {
     background-color: var(--main-background);
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100vh;
-    margin: 0;
+    padding-top: 50px;
+}
+
+h1 {
+    margin-bottom: 20px;
 }
 
 header {
-    background-color: rgba(26, 26, 26, 0.6);
+    background-color: var(--main-background);
     color: var(--secondary-text);
-    padding: 6px;
-    text-align: center;
-    z-index: 1000;
-    width: 75%;
+    display:grid;
+    grid-template-columns: 3fr 1fr 3fr;
     align-items: center;
-    margin: 0 auto;
-}
+    width: 100%;
+    padding:0.5em 1em;
+    font-size: 1em;
+    position:fixed;
+    top:0; left:0;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+} 
 
 .logo {
-    float: left;
-    margin-left: 5px;
-}
-
-.icon {
-    float: right;
-    margin-right: 5px;
-}
-
-.logo a,
-.icon a {
-    color: var(--main-text);
-    padding-top: 10px;
+    justify-self:center;
+    padding-left:1em;
+    
 }
 
 nav {
-    display: inline-block;
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    justify-content: center;
+    gap:10px;
 }
 
 nav a {
     color: var(--seconadry-text);
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 10px 10px;
     display: inline-block;
+}
+
+.icon {
+    justify-self: center;
+    font-size: 1em;
+}
+
+.logo a,
+.icon a {
+    color: var(--secondary-text);
+    padding-top: 10px;
+}
+
+body > header > div.icon > form > button > i {
+    cursor: pointer;
+}
+
+body > header > div.icon > form > button > i:hover {
+    color:var(--main-text);
+}
+
+body > header > div.icon > form > button {
+    background:none; border: none;
+    color:var(--secondary-text);
 }
 
 a {
@@ -74,9 +96,10 @@ a.active {
 
 main.container {
     margin: 20px 0;
-    height: 90vh;
+    
     text-align: center;
     color: var(--main-text);
+    width:400px;
 }
 
 footer {
@@ -84,7 +107,133 @@ footer {
     color: var(--secondary-text);
     margin: 10px 0;
     font-size: 1.5vmin;
+    padding: 10px;
 }
+
+
+/* HOME PAGE / GLOBAL POSTS */
+
+.post-container {
+    width: 364px;
+    background-color: var(--main-background);
+    margin: 0 auto;
+}
+
+.post {
+    margin: 5px 0;
+    border-bottom: 1px solid var(--secondary-text);
+}
+
+.user-info {
+    padding: 10px 0;
+    display: flex;
+    justify-content:flex-start;
+    align-items:end;
+    color: var(--main-text);
+}
+
+.post-profile-photo {
+    width:40px;
+    border-radius: 100%;
+}
+
+.username {
+    font-size:0.8em;
+    margin-left:8px;
+    font-weight:bold;
+}
+
+.post-time {
+    color: var(--secondary-text);
+    font-size: 0.9em;
+    margin-left:270px;
+}
+
+.post-text {
+    text-align:left;
+    padding:0px 0px 8px 0px;
+    font-size: 0.8em;
+    color:rgba(255,255,255, 0.7);
+}
+
+.post-image {
+    width: 100%;
+}
+
+.post-interactions {
+    padding: 10px 0px 10px 0px;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+}
+
+body > main > div > div > div.post-interactions > button {
+    background: none;
+    border:none;
+    color:var(--main-text);
+    cursor: pointer;
+} 
+
+body > main > div > div > div.post-interactions > button:hover {
+    color:#fff;
+    fill: #fff;
+}
+
+.comment-info p {
+    color: var(--secondary-text);
+    font-size: 0.8em;
+    margin-left: 240px;
+}
+
+
+/* PROFILE PAGE */
+
+.profile-container {
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .profile-user-info {
+   display: grid;
+  }
+  
+  .profilepage-profile-photo {
+    width: 100px;
+    border-radius: 100%;
+    margin-top: 0px;
+  }
+  
+  .profile-username {
+    position: absolute;
+    margin-left: 100px;
+  }
+  
+  .profile-bio {
+    font-size: 16px;
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 100px;
+  }
+  
+  .edit-profile {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 0.8em;
+    color: var(--main-text);
+    background-color: var(--main-background);
+    border: 1px solid var(--secondary-text);
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .content h2 {
+    font-size: 28px;
+    border-bottom: 2px solid var(--secondary-text);
+    padding-bottom: 5px;
+    margin-bottom:10px;
+    width: 100%;
+  }
 
 
 /* FORMS / SIGN UP / LOGIN */
@@ -126,6 +275,7 @@ span.helptext {
 
 body>main>form>ul {
     font-size: 1.5vmin;
+    text-align: left;
     color: var(--secondary-text)
 }
 
@@ -145,17 +295,14 @@ body>main>form>ul {
     color: #000;
 }
 
-h1 {
-    margin-bottom: 20px;
+body > main > form > button {
+    width: 100%;
 }
 
 /* MEDIA QUERIES */
-@media screen and (min-width: 390px) {
+@media screen and (max-width: 490px) {
 
-    .logo,
-    .icon {
-        padding: 4px 2px;
-    }
+
 
     nav a {
         padding: 4px;

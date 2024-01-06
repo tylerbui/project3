@@ -1,55 +1,42 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-class Post(models.Model): 
-    profile_picture = models.URLField()
-    user_name = models.CharField(max_length=20)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
-    content = models.TextField()
-    date_posted = models.DateTimeField(auto_now_add=True)
-
-    # For Ian to Finish AWS and Boto
-    # class Photo(models.Model):
-    #     url = models.CharField(max_length=200)
-    #     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.name} ({self.id})'
-    
-class Comment(models.Model):
-    content = models.TextField()
-    image = models.URLField()
-    post = models.ManyToManyField(Post)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f'{self.user_name} ({self.id})'
 
 class Profile(models.Model):
-    name = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_name = models.CharField(max_length=20)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.URLField()
-    bio = models.TextField(default="Bio +") 
+    bio = models.TextField(max_length=40) 
 
     def __str__(self):
-        return f'{self.name} ({self.user_name})'
+        return f'{self.user} ({self.id})'
 
-
-class Photo(models.Model):
-    url = models.CharField(max_length=200)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+class Post(models.Model): 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts', null=True, blank=True)
+    text_content = models.TextField(max_length=250)
+    post_photo = models.URLField()
+    date_posted = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.name} ({self.id})'
+        return f'{self.profile.user.username} ({self.id})'
     
+    def save(self, *args, **kwargs):
+        if self.user and self.user.profile:
+            self.profile = self.user.profile
+        super().save(*args, **kwargs)
 
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    comment_text = models.TextField(max_length=150)
 
-
-
-
-
+    def __str__(self):
+        return f'Comment by {self.user.username} on {self.post} ({self.id})'
     
+def user_save(self, *args, **kwargs):
+    created = not self.pk
+    super(User, self).save(*args, **kwargs)
+    if created:
+        Profile.objects.create(user=self)
 
-
+User.save = user_save
