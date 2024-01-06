@@ -62,11 +62,6 @@ def profile(request):
 
     return render(request, 'profile.html', {'profile': profile, 'posts_with_time': posts_with_time})
 
-@login_required
-def ProfileUpdate(LoginRequiredMixin,UpdateView):
-   model = Profile
-   fields = ['name','bio']
-   
 
 def signup(request):
   error_message = ''
@@ -85,4 +80,5 @@ def signup(request):
 
 class ProfileUpdate(LoginRequiredMixin,UpdateView):
     model = Profile
-    field = ['user','bio']
+    template_name = 'forms/profile.html'
+    fields = ['user','bio']

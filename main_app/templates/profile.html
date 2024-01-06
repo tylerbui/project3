@@ -7,7 +7,16 @@
         <img class="profilepage-profile-photo" src="{{ profile.profile_picture }}" alt="profile picture" border="0">
         <span class="profile-bio">{{ profile.bio }}</span>
     </span>
-    <button class="edit-profile">Edit Profile</button>
+    
+    <!-- IAN CAN YOU CHECK THIS FOR ME IT SAID I HAVE A TEMPLATE DOES NOT EXIST  -->
+         <!-- EITHER URL OR VIEW IS MESSED UP OR MY PATHING FOR FORMS  -->
+         <!-- I DID GET AN ERROR THAT PATHS TO FORMS/PROFILE IN CASE YOU WANT TO CHECK THAT -->
+
+    <form action="{% url 'profile_update' pk=profile.pk %}" method="GET">
+        <button type="submit" class="edit-profile">Edit Profile</button>
+    </form>
+
+
 </span>
 <div class="content">
     <h2>My Y's</h2>
