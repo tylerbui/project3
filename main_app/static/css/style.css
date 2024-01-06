@@ -193,43 +193,46 @@ body > main > div > div > div.post-interactions > button:hover {
     text-align: center;
   }
   
-  .profile-header {
-    margin-bottom: 50px;
+  .profile-user-info {
+   display: grid;
   }
   
   .profilepage-profile-photo {
     width: 100px;
     border-radius: 100%;
-    display: inline-block;
-    margin-top: 20px;
+    margin-top: 0px;
   }
   
   .profile-username {
-   
+    position: absolute;
+    margin-left: 100px;
   }
   
   .profile-bio {
     font-size: 16px;
-    margin-top: 5px;
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 100px;
   }
   
   .edit-profile {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 0.8em;
     color: var(--main-text);
     background-color: var(--main-background);
-    border: 1px solid var(--main-text);
+    border: 1px solid var(--secondary-text);
     cursor: pointer;
     width: 100%;
   }
   
   .content h2 {
     font-size: 28px;
-    border-bottom: 2px solid #555;
-    display: inline-block;
+    border-bottom: 2px solid var(--secondary-text);
     padding-bottom: 5px;
+    margin-bottom:10px;
+    width: 100%;
   }
 
 

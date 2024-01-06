@@ -1,45 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="profile-container">
-    <div class="profile-header">
-        <div class="profile-username">{{ user.username }}</div>
-        <div class="profile-image">
-            <img class="profilepage-profile-photo" src="{{ profile.profile_picture }}" alt="profile picture" border="0">
-        </div>
-        <div class="profile-bio">{{ profile.bio }}</div>
-        <button class="edit-profile">Edit Profile</button>
-    </div>
-    <div class="content">
-        <h2>My Y's</h2>
-    </div>
-    <div class="#">
-        {% if posts %}
-        <span class="user-post">
-            {% include 'index.html' %}
-        </span>
-        {% else %}
-        <p class="no-post">No posts yet.</p>
-        {% endif %}
-    </div>
-    <div class="#">
-        {% if reply %}
-        <span class="user-reply">
-            {% include 'reply.html' %}
-        </span>
-        {% else %}
-        <p class="no-reply">No replies yet.</p>
-        {% endif %}
-    </div>
-    <div class="#">
-        {% if repost %}
-        <span class="user-repost">
-            {% include 'repost.html' %}
-        </span>
-        {% else %}
-        <p class="no-repost">No reposts yet.</p>
-        {% endif %}
-    </div>
+<span class="profile-container">
+    <span class="profile-user-info">
+        <span class="profile-username">{{ user.username }}</span>
+        <img class="profilepage-profile-photo" src="{{ profile.profile_picture }}" alt="profile picture" border="0">
+        <span class="profile-bio">{{ profile.bio }}</span>
+    </span>
+    <button class="edit-profile">Edit Profile</button>
+</span>
+<div class="content">
+    <h2>My Y's</h2>
 </div>
+
+{% if posts_with_time %}
+<div class="post-container">
+    {% for post, time_since in posts_with_time %}
+    <div class="post">
+        <div class="user-info">
+            <img class="post-profile-photo" src="{{ profile.profile_picture }}" alt="profile picture" border="0">
+            <p class="username">{{ profile.user.username }}</p>
+            <p class="post-time">{{ time_since }}</p>
+        </div>
+        <div class="post-text">{{ post.text_content }}</div>
+        <img class="post-image" src="{{ post.post_photo }}" alt="" border="0">
+        <div class="post-interactions">
+            <button type="submit"><i class="fa-regular fa-heart"></i></button>
+            <button type="submit"><i class="fa-regular fa-comment"></i></button>
+            <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
+            <div class="comment-info">
+                    <p>10 re-ys</p>
+            </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="no-post">No posts yet.</p>
+{% endif %}
 
 {% endblock %}
