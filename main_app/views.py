@@ -1,3 +1,6 @@
+import os
+import uuid
+import boto3
 from django.shortcuts import render, redirect
 from django.contrib.auth import login 
 from django.urls import reverse
@@ -8,7 +11,7 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-from .models import Profile, Post, Comment
+from .models import Profile, Post, Comment, Post_image
 from .forms import ProfileForm, PostForm
 
 def home(request):
@@ -70,12 +73,32 @@ def profile(request, pk):
 @login_required
 def create_post(request):
     if request.method == "POST":
-        text_content = request.POST.get('text_content')
-        profile_id = request.user.profile.id
-        post = Post(text_content=text_content, profile_id=profile_id)
-        post.save()
-        return redirect('#')
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.profile = request.user.profile
+            post.save()
+            image_file = request.FILES.get('image-file', None)
+            print("image file: {image_file}")
+            if image_file:
+              s3 = boto3.client('s3')
+              key = uuid.uuid4().hex[:6] + image_file.name[image_file.name.rfind('.'):]
+              try:
+                  bucket = os.environ['S3_BUCKET']
+                  s3.upload_fileobj(image_file, bucket, key)
+                  url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+                  Post_image.objects.create(url=url, post=post)
+                  print(f"Image URL: {url}")
+              except Exception as e:
+                  print('An error occured uploading the image to S3')
+                  print(e)
+              return redirect('#', post=post)
+    else:
+        form = PostForm()
+
     return render(request, 'main_app/post_form.html')
+      
 
 
 def signup(request):
@@ -111,3 +134,4 @@ class PostCreate(CreateView):
         return super().form_valid(form)
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
+    

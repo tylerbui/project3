@@ -6,16 +6,19 @@
 <h1>New Post</h1>
 <img class="user-profile-picture" src="{{ user.profile.profile_picture }}">
 <p>{{user.profile.user_name}}</p>
-<a href="#"><i class="fa-regular fa-image"></i></a>
-<a href="#"><i class="fa-solid fa-hashtag"></i></a>
 
-<form  class= "post-form" action="" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="POST" class="post-btn">
+
+
+<form action="{% url 'post_create' %}" class="post-form" enctype="multipart/form-data" method="POST" >
+{% csrf_token %}
+{{ form.as_p }}
+<label for="image_file"><i class="fa-regular fa-image"></i></label>
+<a href="#"><i class="fa-solid fa-hashtag"></i></a>
+<input type="file" name="image-file">
+<input type="submit" value="POST" class="post-btn">
 </form>
+
+
 
 {% endif %}
 
