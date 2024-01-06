@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login 
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from .models import Profile, Post, Comment
+from .forms import ProfileForm
 
 def home(request):
     posts = Post.objects.all()
@@ -36,6 +38,12 @@ def home(request):
 def profile(request):
     profile = request.user.profile
     return render(request, 'profile.html', {'profile': profile})
+
+@login_required
+def ProfileUpdate(LoginRequiredMixin,UpdateView):
+   model = Profile
+   fields = ['name','bio']
+   
 
 def signup(request):
   error_message = ''
