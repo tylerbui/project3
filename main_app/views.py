@@ -11,8 +11,10 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-from .models import Profile, Post, Comment, Post_image
-from .forms import ProfileForm, PostForm
+
+from .models import Profile, Post, Comment
+from .forms import ProfileForm
+from django.urls import reverse_lazy
 
 def home(request):
     posts = Post.objects.all()
@@ -118,8 +120,10 @@ def signup(request):
 
 class ProfileUpdate(LoginRequiredMixin,UpdateView):
     model = Profile
-    template_name = 'forms/profile.html'
-    fields = ['user','bio']
+
+    template_name = 'forms/profile_form.html'
+    fields = ['profile_picture','bio']
+    success_url = reverse_lazy('profile')
 
     def get_success_url(self):
         return reverse('profile_update', kwargs={'pk': self.request.user.profile.pk})
@@ -134,4 +138,3 @@ class PostCreate(CreateView):
         return super().form_valid(form)
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
-    
