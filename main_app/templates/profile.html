@@ -40,10 +40,16 @@
             <div class="comment-info">
                     <p>10 re-ys</p>
             </div>
-    </div>
+        </div>
     </div>
     {% endfor %}
 </div>
+<!-- If you want to link an icon to the delete post -->
+<!-- <div class="post-delete">
+    <a href="{% url 'post_delete' pk=post.id %}">
+        <button type="button">Delete</button>
+    </a>
+</div> -->
 {% else %}
 <p class="no-post">No posts yet.</p>
 {% endif %}
