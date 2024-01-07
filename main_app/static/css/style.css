@@ -299,7 +299,16 @@ body > main > form > button {
     width: 100%;
 }
 
+#image-form {
+    display: none;
+}
+
 /* MEDIA QUERIES */
 @media screen and (max-width: 490px) {
 
+
+
+    nav a {
+        padding: 4px;
+    }
 }

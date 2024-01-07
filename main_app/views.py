@@ -1,10 +1,17 @@
+import os
+import uuid
+import boto3
 from django.shortcuts import render, redirect
 from django.contrib.auth import login 
+from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
+
 from .models import Profile, Post, Comment
 from .forms import ProfileForm
 from django.urls import reverse_lazy
@@ -33,10 +40,12 @@ def home(request):
 
         posts_with_time.append((post, time_since))
 
+    # user_profile = Profile.objects.get(user=request.user)
+
     return render(request, 'home.html', {'posts_with_time': posts_with_time})
 
 @login_required
-def profile(request):
+def profile(request, pk):
     now = timezone.now()
     profile = request.user.profile
     posts = Post.objects.filter(profile=profile)
@@ -63,6 +72,36 @@ def profile(request):
 
     return render(request, 'profile.html', {'profile': profile, 'posts_with_time': posts_with_time})
 
+@login_required
+def create_post(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.profile = request.user.profile
+            post.save()
+            image_file = request.FILES.get('image-file', None)
+            print("image file: {image_file}")
+            if image_file:
+              s3 = boto3.client('s3')
+              key = uuid.uuid4().hex[:6] + image_file.name[image_file.name.rfind('.'):]
+              try:
+                  bucket = os.environ['S3_BUCKET']
+                  s3.upload_fileobj(image_file, bucket, key)
+                  url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+                  Post_image.objects.create(url=url, post=post)
+                  print(f"Image URL: {url}")
+              except Exception as e:
+                  print('An error occured uploading the image to S3')
+                  print(e)
+              return redirect('#', post=post)
+    else:
+        form = PostForm()
+
+    return render(request, 'main_app/post_form.html')
+      
+
 
 def signup(request):
   error_message = ''
@@ -81,6 +120,21 @@ def signup(request):
 
 class ProfileUpdate(LoginRequiredMixin,UpdateView):
     model = Profile
+
     template_name = 'forms/profile_form.html'
     fields = ['profile_picture','bio']
     success_url = reverse_lazy('profile')
+
+    def get_success_url(self):
+        return reverse('profile_update', kwargs={'pk': self.request.user.profile.pk})
+
+class PostCreate(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'post_form.html'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
