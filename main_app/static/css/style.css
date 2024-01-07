@@ -24,7 +24,7 @@ h1 {
 }
 
 header {
-    background-color: var(--main-background);
+    background-color: rgba(26, 26, 26, 0.8);
     color: var(--secondary-text);
     display:grid;
     grid-template-columns: 3fr 1fr 3fr;
@@ -185,6 +185,63 @@ body > main > div > div > div.post-interactions > button:hover {
     margin-left: 240px;
 }
 
+/* CREATE POST PAGE */
+
+/* removes django generated label */
+body > main > div > form > p > label {
+    display:none;
+}
+
+body > main > div > form > p {
+    margin:0;
+}
+
+/* hastag icon */
+body > main > div > form > div > i {
+    padding-left:10px;
+}
+
+.create-icons {
+display:flex;
+padding:5px 0px;
+}
+
+#id_text_content {
+    width: 100%;
+    background-color: var(--main-background);
+    height:80px;
+    color:var(--main-text);
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.image-file {
+    cursor:pointer;
+}
+
+.fa-solid, .fa-hashtag, .fa-regular, .fa-image {
+    color:var(--secondary-text);
+}
+
+.fa-solid:hover, .fa-hashtag:hover, .fa-regular:hover, .fa-image:hover {
+    color: var(--main-text);
+}
+
+input[type="file"] {
+    display:none;
+}
+
+.post-btn {
+    text-align: right;
+    border:none;
+    width:45px;
+    cursor: pointer;
+    float:right;
+    padding-right:0;
+    padding-left:0;
+}
 
 /* PROFILE PAGE */
 
@@ -218,13 +275,18 @@ body > main > div > div > div.post-interactions > button:hover {
   .edit-profile {
     display: block;
     margin: 20px auto;
-    padding: 10px 20px;
+    padding: 5px 20px;
     font-size: 0.8em;
     color: var(--main-text);
     background-color: var(--main-background);
     border: 1px solid var(--secondary-text);
     cursor: pointer;
     width: 100%;
+  }
+
+  .edit-profile:hover {
+    background-color: var(--secondary-text);
+    color:var(--main-text);
   }
   
   .content h2 {
@@ -257,8 +319,9 @@ input {
     padding: 8px;
     margin-top: 5px;
     margin-bottom: 10px;
-    background-color: var(--secondary-text);
+    background-color: var(--main-background);
     border-radius: 5px;
+    border: 1px solid var(--secondary-text); 
     color: var(--main-text);
 }
 
@@ -280,19 +343,19 @@ body>main>form>ul {
 }
 
 .btn {
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    border: none;
+    color: var(--main-text);
+    background-color: var(--main-background);
+    border: 1px solid var(--secondary-text);
     cursor: pointer;
+    padding: 10px;
     font-size: 1.5vmin;
     border-radius: 5px;
     text-transform: uppercase;
 }
 
 .btn:hover {
-    background-color: var(--main-text);
-    color: #000;
+    background-color: var(--secondary-text);
+    color:var(--main-text);
 }
 
 body > main > form > button {
