@@ -207,10 +207,7 @@ padding:5px 0px;
 }
 
 #id_text_content {
-    width: 100%;
-    background-color: var(--main-background);
     height:80px;
-    color:var(--main-text);
 }
 
 textarea:focus {
@@ -236,11 +233,16 @@ input[type="file"] {
 .post-btn {
     text-align: right;
     border:none;
-    width:45px;
+    width:40px;
     cursor: pointer;
     float:right;
     padding-right:0;
     padding-left:0;
+    padding-top:0px;
+}
+
+.post-btn:hover {
+    color:#fff;
 }
 
 /* PROFILE PAGE */
@@ -297,6 +299,18 @@ input[type="file"] {
     width: 100%;
   }
 
+/* EDIT PROFILE PAGE */
+
+/* edit profile page lebels */
+body > main > form > p > label {
+    text-align: left;
+}
+
+/* edit profile page textarea */
+#id_bio {
+    height:80px;
+}
+
 
 /* FORMS / SIGN UP / LOGIN */
 
@@ -327,6 +341,13 @@ input {
 
 input:focus {
     outline: none;
+}
+
+textarea {
+    background-color: var(--main-background);
+    color:var(--main-text);
+    width:100%;
+    max-width:100%;
 }
 
 span.helptext {
