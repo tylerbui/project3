@@ -12,8 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
-from .models import Profile, Post, Comment
-from .forms import ProfileForm
+from .models import Profile, Post, Comment, Post_image
+from .forms import ProfileForm, PostForm
 from django.urls import reverse_lazy
 
 def home(request):
@@ -138,3 +138,7 @@ class PostCreate(CreateView):
         return super().form_valid(form)
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
+
+class PostDelete(LoginRequiredMixin,DeleteView):
+    model = Post
+    success_url = '/'
