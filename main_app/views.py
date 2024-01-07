@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from .models import Profile, Post, Comment
 from .forms import ProfileForm
+from django.urls import reverse_lazy
 
 def home(request):
     posts = Post.objects.all()
@@ -80,5 +81,6 @@ def signup(request):
 
 class ProfileUpdate(LoginRequiredMixin,UpdateView):
     model = Profile
-    template_name = 'forms/profile.html'
-    fields = ['user','bio']
+    template_name = 'forms/profile_form.html'
+    fields = ['profile_picture','bio']
+    success_url = reverse_lazy('profile')
