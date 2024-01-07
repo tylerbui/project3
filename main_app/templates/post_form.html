@@ -1,25 +1,24 @@
 {% extends 'base.html' %}
-
 {% block content %}
-
 {% if user.is_authenticated %}
-<h1>New Post</h1>
-<img class="user-profile-picture" src="{{ user.profile.profile_picture }}">
-<p>{{user.profile.user_name}}</p>
 
+    <div class="post-container">
+        <div class="user-info">
+            <img class="post-profile-photo" src="{{ user.profile.profile_picture }}" alt="profile picture" border="0">
+            <p class="username">{{ user.username }}</p>
+        </div>
 
-
-<form action="{% url 'post_create' %}" class="post-form" enctype="multipart/form-data" method="POST" >
-{% csrf_token %}
-{{ form.as_p }}
-<label for="image_file"><i class="fa-regular fa-image"></i></label>
-<a href="#"><i class="fa-solid fa-hashtag"></i></a>
-<input type="file" name="image-file">
-<input type="submit" value="POST" class="post-btn">
-</form>
-
-
+        <form action="{% url 'post_create' %}" class="post-form" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="create-icons">
+                <label class="image-file" for="image_file" title="Upload Image"><i class="fa-regular fa-image"></i></label>
+                <input type="file" id="image_file" name="image-file">
+                <i class="fa-solid fa-hashtag"></i>
+            </div>
+            {{ form.as_p }}
+            <input type="submit" value="POST" class="post-btn">
+        </form>
+    </div>
 
 {% endif %}
-
 {% endblock %}
