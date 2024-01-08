@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from django import forms
 from .models import Profile, Post
 
 class ProfileForm(ModelForm):
@@ -6,7 +7,7 @@ class ProfileForm(ModelForm):
     model = Profile
     fields = ['user', 'bio']
 
-class PostForm(ModelForm):
+class PostForm(forms.ModelForm):
   class Meta:
     model = Post
-    fields = ['text_content']
+    fields = ['text_content', 'post_photo', 'post_tags']

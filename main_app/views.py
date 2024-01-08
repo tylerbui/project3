@@ -12,8 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
-from .models import Profile, Post, Comment
-from .forms import ProfileForm
+from .models import Profile, Post, Comment, Post_image
+from .forms import ProfileForm, PostForm
 from django.urls import reverse_lazy
 
 def home(request):
@@ -76,20 +76,24 @@ def profile(request, pk):
 def create_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)
+
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
             post.profile = request.user.profile
             post.save()
-            image_file = request.FILES.get('image-file', None)
-            print("image file: {image_file}")
-            if image_file:
+
+            post_photo = request.FILES.get('post-photo', None)
+
+            if post_photo:
               s3 = boto3.client('s3')
-              key = uuid.uuid4().hex[:6] + image_file.name[image_file.name.rfind('.'):]
+              key = uuid.uuid4().hex[:6] + post_photo.name[post_photo.name.rfind('.'):]
               try:
                   bucket = os.environ['S3_BUCKET']
-                  s3.upload_fileobj(image_file, bucket, key)
+                  s3.upload_fileobj(post_photo, bucket, key)
                   url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+                  post.post_photo = url
+                  post.save()
                   Post_image.objects.create(url=url, post=post)
                   print(f"Image URL: {url}")
               except Exception as e:
@@ -99,7 +103,7 @@ def create_post(request):
     else:
         form = PostForm()
 
-    return render(request, 'main_app/post_form.html')
+    return render(request, 'main_app/post_form.html', {'form': form})
       
 
 
@@ -138,3 +142,4 @@ class PostCreate(CreateView):
         return super().form_valid(form)
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
+    
