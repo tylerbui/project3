@@ -5,8 +5,8 @@
 {% for post, time_since in posts_with_time %}
         <div class="post">
                 <div class="user-info">
-                        <img class="post-profile-photo" src="{{ user.profile.profile_picture }}" alt="profile picture" border="0">
-                        <p class="username">{{ user.username }}</p>
+                        <img class="post-profile-photo" src="{{ post.user.profile.profile_picture }}" alt="profile picture" border="0">
+                        <p class="username">{{ post.user.username }}</p>
                         <p class="post-time">{{ time_since }}</p>
                 </div>
                 <div class="post-text">{{ post.text_content }}</div>
