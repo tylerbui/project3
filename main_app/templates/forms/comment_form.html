@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <!-- If we have to render the existing comment ?  -->
+  <!-- If you guys don't mind looking over this  -->
+{% for comment in comments %}
+    <p>{{ comment.comment_text }}</p>
+{% endfor %}
+
+ 
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ comment_form.as_p }}
+    </table>
+    <input type="submit" value="Submit" class="btn">
+</form>
+
+{% endblock %}

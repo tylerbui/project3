@@ -12,8 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
-from .models import Profile, Post, Comment, Post_image
-from .forms import ProfileForm, PostForm
+from .models import Profile, Post, Comment, Post_image, Post_image
+from .forms import ProfileForm, PostForm, CommentForm, PostForm
 from django.urls import reverse_lazy
 
 def home(request):
@@ -143,3 +143,23 @@ class PostCreate(CreateView):
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
     
+
+class PostDelete(LoginRequiredMixin,DeleteView):
+    model = Post
+    template = 'main_app/templates/forms/post_confirm_delete.html'
+    success_url = '/profile'
+
+
+# Just added this for the comment form. If you guys have time check this over 
+@login_required
+def comment_form(request):
+    # reads all the comments
+    comments = Comment.objects.all()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = CommentForm()
+    return render(request, 'comment_form.html', {'comments': comments, 'comment_form': form})
+
