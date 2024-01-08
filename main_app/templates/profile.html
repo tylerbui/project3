@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<!-- Have comment form on the same page -->
+<script>
+     function toggleCommentForm() {
+        document.getElementById('comment-form').style.display = 'block';
+    }
+</script>
+
 <span class="profile-container">
     <span class="profile-user-info">
         <span class="profile-username">{{ user.username }}</span>
@@ -35,15 +42,17 @@
         <img class="post-image" src="{{ post.post_photo }}" alt="Post Image" border="0">
         <div class="post-interactions">
             <button type="submit"><i class="fa-regular fa-heart"></i></button>
-            <button type="submit"><i class="fa-regular fa-comment"></i></button>
+            <!-- Not sure what to do with the comment section yet -->
+            <button type="button" onclick="toggleCommentForm()"><i class="fa-regular fa-comment"></i></button>
             <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
             <div class="comment-info">
-                    <p>10 re-ys</p>
+                    <p>10 re-ys</p> 
             </div>
         </div>
     </div>
     {% endfor %}
 </div>
+<!-- Maybe we can do a {{% if post.is_active %}} ? -->
 <!-- If you want to link an icon to the delete post -->
 <!-- <div class="post-delete">
     <a href="{% url 'post_delete' pk=post.id %}">

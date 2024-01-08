@@ -13,7 +13,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 
 from .models import Profile, Post, Comment, Post_image
-from .forms import ProfileForm, PostForm
+from .forms import ProfileForm, PostForm, CommentForm
 from django.urls import reverse_lazy
 
 def home(request):
@@ -138,7 +138,23 @@ class PostCreate(CreateView):
         return super().form_valid(form)
     def get_success_url(self):
         return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
+    
 
 class PostDelete(LoginRequiredMixin,DeleteView):
     model = Post
     success_url = '/'
+
+
+# Just added this for the comment form. If you guys have time check this over 
+@login_required
+def comment_form(request):
+    # reads all the comments
+    comments = Comment.objects.all()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = CommentForm()
+    return render(request, 'comment_form.html', {'comments': comments, 'comment_form': form})
+
