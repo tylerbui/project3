@@ -142,7 +142,8 @@ class PostCreate(CreateView):
 
 class PostDelete(LoginRequiredMixin,DeleteView):
     model = Post
-    success_url = '/'
+    template = 'main_app/templates/forms/post_confirm_delete.html'
+    success_url = '/profile'
 
 
 # Just added this for the comment form. If you guys have time check this over 
