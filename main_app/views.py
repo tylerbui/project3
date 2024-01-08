@@ -17,7 +17,7 @@ from .forms import ProfileForm, PostForm, CommentForm, PostForm
 from django.urls import reverse_lazy
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-date_posted')
     now = timezone.now()
 
     posts_with_time = []
@@ -48,7 +48,7 @@ def home(request):
 def profile(request, pk):
     now = timezone.now()
     profile = request.user.profile
-    posts = Post.objects.filter(profile=profile)
+    posts = Post.objects.filter(profile=profile).order_by('-date_posted')
 
     posts_with_time = []
     for post in posts:
@@ -130,7 +130,7 @@ class ProfileUpdate(LoginRequiredMixin,UpdateView):
     success_url = reverse_lazy('profile')
 
     def get_success_url(self):
-        return reverse('profile_update', kwargs={'pk': self.request.user.profile.pk})
+        return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
 
 class PostCreate(CreateView):
     model = Post
