@@ -146,8 +146,9 @@ class PostCreate(CreateView):
 
 class PostDelete(LoginRequiredMixin,DeleteView):
     model = Post
-    template = 'main_app/templates/forms/post_confirm_delete.html'
-    success_url = '/profile'
+    template_name = 'post_confirm_delete.html'
+    def get_success_url(self):
+        return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
 
 
 # Just added this for the comment form. If you guys have time check this over 
