@@ -395,6 +395,11 @@ body > main > form > p > label {
     max-height: 100px;
 }
 
+/*comments p */
+body > main > p {
+    color:var(--secondary-text);
+}
+
 /* post comment btn */
 body > main > div.comment-form > form > button {
     width: 90%;
@@ -434,7 +439,7 @@ input {
     margin-top: 5px;
     margin-bottom: 5px;
     background-color: var(--main-background);
-    border-radius: 5px;
+    /* border-radius: 5px; */
     border: 1px solid var(--secondary-text); 
     color: var(--main-text);
 }
