@@ -326,6 +326,30 @@ input[type="file"] {
     color:#fff;
   }
 
+  /* DELETE POST CONFIRMATION PAGE */
+
+  body > main > form > button {
+    background-color: var(--main-background);
+    color: var(--secondary-text);
+    padding:10px 0;
+    border: 1px solid var(--secondary-text);
+    border-radius: 5px;
+  }
+
+  body > main > form > button:hover {
+    background-color: var(--secondary-text);
+    color:#fff;
+  }
+
+  body > main > form > button a {
+    color:var(--main-text);
+  }
+
+  body > main > form > button a:hover {
+    background-color: var(--secondary-text);
+    color:#fff;
+  }
+
 /* EDIT PROFILE PAGE */
 
 /* edit profile page lebels */
