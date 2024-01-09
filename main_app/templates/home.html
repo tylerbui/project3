@@ -9,7 +9,6 @@
                         <p class="username">{{ post.user.username }}</p>
                         <p class="post-time">{{ time_since }}</p>
                 </div>
-                <div>Y-{{ post.post_tags }}</div>
                 <div class="post-text">{{ post.text_content }}</div>
                 <img  class="post-image" src="{{ post.post_photo }}" alt="Post Image" border="0">
                 <div class="post-interactions">
@@ -17,7 +16,7 @@
                         <button type="submit"><i class="fa-regular fa-comment"></i></button>
                         <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
                         <div class="comment-info">
-                                <p class="comments-p-home">10 re-ys</p>
+                                <p class="comments-p-home"><a href="{% url 'post_detail' pk=post.pk %}">10 re-ys</a></p>
                         </div>
                 </div>
         </div>
