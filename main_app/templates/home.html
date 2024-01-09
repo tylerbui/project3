@@ -16,7 +16,7 @@
                         <button type="submit"><i class="fa-regular fa-comment"></i></button>
                         <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
                         <div class="comment-info">
-                                <p class="comments-p-home"><a href="{% url 'post_detail' pk=post.pk %}">10 re-ys</a></p>
+                                <p class="comments-p-home"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comments.all.count }} re-y's</a></p>
                         </div>
                 </div>
         </div>
