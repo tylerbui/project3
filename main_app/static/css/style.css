@@ -114,7 +114,7 @@ footer {
 /* HOME PAGE / GLOBAL POSTS */
 
 .post-container {
-    width: 364px;
+    width: 400px;
     background-color: var(--main-background);
     margin: 0 auto;
 }
@@ -139,7 +139,7 @@ footer {
 }
 
 .username {
-    font-size:0.8em;
+    font-size:1em;
     margin-left:8px;
     font-weight:bold;
 }
@@ -147,7 +147,7 @@ footer {
 .post-time {
     color: var(--secondary-text);
     font-size: 0.9em;
-    margin-left:270px;
+    margin-left:auto;
 }
 
 .post-text {
@@ -183,7 +183,15 @@ body > main > div > div > div.post-interactions > button:hover {
 .comments-p-home {
     color: var(--secondary-text);
     font-size: 0.8em;
-    margin-left: 240px;
+    margin-left: 270px;
+}
+
+.comments-p-home a {
+color:var(--secondary-text);
+}
+
+.comments-p-home a:hover {
+    color:var(--main-text);
 }
 
 /* CREATE POST PAGE */
@@ -330,6 +338,47 @@ body > main > form > p > label {
     height:80px;
 }
 
+/* POST DETAIL PAGE */
+
+.comment {
+    text-align: left;
+    align-items: center;
+    font-size: 0.9em;
+    /* border-bottom: 1px solid var(--secondary-text); */
+    padding:5px 0px;
+    margin-top:2px;
+}
+
+.comments p {
+    margin:10px 0px;
+    font-size: 0.8em;
+    color:var(--secondary-text);
+}
+
+/* comment text-area */
+#id_comment_text {
+    width:90%;
+    max-width: 90%;
+    height: 60px;
+    max-height: 100px;
+}
+
+/* post comment btn */
+body > main > div.comment-form > form > button {
+    width: 90%;
+    background-color: var(--main-background);
+    border: 1px solid var(--secondary-text);
+    color: var(--secondary-text);
+    padding:5px;
+    font-size:0.8em;
+    cursor: pointer;
+}
+
+body > main > div.comment-form > form > button:hover {
+    color:#fff;
+    background-color:var(--secondary-text);
+    cursor: pointer;
+} 
 
 /* FORMS / SIGN UP / LOGIN */
 
@@ -351,7 +400,7 @@ input {
     width: 100%;
     padding: 8px;
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     background-color: var(--main-background);
     border-radius: 5px;
     border: 1px solid var(--secondary-text); 
@@ -407,15 +456,12 @@ body > main > form > button {
 }
 
 /* tag name above posts */
-body > main > div.post-container > div > div:nth-child(2) {
+/* body > main > div.post-container > div > div:nth-child(2) {
     display: none;
-}
+} */
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 490px) {
-
-
-
     nav a {
         padding: 4px;
     }
