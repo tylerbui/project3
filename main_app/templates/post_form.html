@@ -15,7 +15,9 @@
                 <input type="file" id="image_file" name="image-file">
                 <i class="fa-solid fa-hashtag"></i>
             </div>
-            {{ form.as_p }}
+            {{ form.text_content }}
+            <input type="text" name="post_photo" placeholder="Image Link">
+            <input type="text" name="post_tags" placeholder="Add a Tag">
             <input type="submit" value="POST" class="post-btn">
         </form>
     </div>
