@@ -40,8 +40,6 @@ def home(request):
 
         posts_with_time.append((post, time_since))
 
-    # user_profile = Profile.objects.get(user=request.user)
-
     return render(request, 'home.html', {'posts_with_time': posts_with_time})
 
 @login_required
