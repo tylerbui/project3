@@ -147,7 +147,7 @@ footer {
 .post-time {
     color: var(--secondary-text);
     font-size: 0.9em;
-    margin-left:240px;
+    margin-left:270px;
 }
 
 .post-text {
@@ -180,7 +180,7 @@ body > main > div > div > div.post-interactions > button:hover {
     fill: #fff;
 }
 
-.comment-info p {
+.comments-p-home {
     color: var(--secondary-text);
     font-size: 0.8em;
     margin-left: 240px;
@@ -300,6 +300,24 @@ input[type="file"] {
     width: 100%;
   }
 
+  .comments-p-profile {
+    color: var(--secondary-text);
+    font-size: 0.8em;
+    margin-left: 215px;
+}
+
+  /* post delete button */
+  body > main > div.post-container > div > div.post-interactions > div.post-delete > a > button {
+    background: none;
+    border:none;
+    color:var(--main-text);
+    cursor: pointer;
+  }
+
+  body > main > div.post-container > div > div.post-interactions > div.post-delete > a > button:hover {
+    color:#fff;
+  }
+
 /* EDIT PROFILE PAGE */
 
 /* edit profile page lebels */
@@ -385,6 +403,11 @@ body > main > form > button {
 }
 
 #image-form {
+    display: none;
+}
+
+/* tag name above posts */
+body > main > div.post-container > div > div:nth-child(2) {
     display: none;
 }
 
