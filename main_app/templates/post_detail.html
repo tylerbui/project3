@@ -27,6 +27,14 @@
                         <img class="post-profile-photo" src="{{ comment.user.profile.profile_picture }}" alt="profile picture" border="0">
                         <strong>{{ comment.user.username }}</strong>
                         <p>{{ comment.comment_text }}</p>
+                    {% if user.is_authenticated and comment.user == user %}
+                    <div class="comment-delete-form">
+                        <form method="post" action="{% url 'comment_confirm_delete' comment.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete Comment</button>
+                        </form>
+                    </div>
+                    {% endif %}
                     </div>
                 {% empty %}
                     <p>No comments yet.</p>
