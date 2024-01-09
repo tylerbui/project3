@@ -5,19 +5,18 @@
 {% for post, time_since in posts_with_time %}
         <div class="post">
                 <div class="user-info">
-                        <img class="post-profile-photo" src="{{ user.profile.profile_picture }}" alt="profile picture" border="0">
-                        <p class="username">{{ user.username }}</p>
+                        <img class="post-profile-photo" src="{{ post.user.profile.profile_picture }}" alt="profile picture" border="0">
+                        <p class="username">{{ post.user.username }}</p>
                         <p class="post-time">{{ time_since }}</p>
                 </div>
-                <div>Y-{{ post.post_tags }}</div>
                 <div class="post-text">{{ post.text_content }}</div>
                 <img  class="post-image" src="{{ post.post_photo }}" alt="Post Image" border="0">
                 <div class="post-interactions">
                         <button type="submit"><i class="fa-regular fa-heart"></i></button>
-                        <button type="submit"><i class="fa-regular fa-comment"></i></button>
+                        <button type="submit"><a href="{% url 'post_detail' pk=post.pk %}"><i class="fa-regular fa-comment"></i></a></button>
                         <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
                         <div class="comment-info">
-                                <p>10 re-ys</p>
+                                <p class="comments-p-home"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comments.all.count }} re-y's</a></p>
                         </div>
                 </div>
         </div>

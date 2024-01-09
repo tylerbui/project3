@@ -40,6 +40,9 @@ class Post(models.Model):
             self.profile = self.user.profile
         super().save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk': self.pk})
+
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,6 +51,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'Comment by {self.user.username} on {self.post} ({self.id})'
+    
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk': self.post.pk})
     
 def user_save(self, *args, **kwargs):
     created = not self.pk
