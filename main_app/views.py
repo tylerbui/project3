@@ -147,4 +147,11 @@ class PostDetailView(DetailView):
             return redirect(self.object.get_absolute_url())
 
 
-
+class CommentDelete(LoginRequiredMixin,DeleteView):
+    model = Comment 
+    template_name = "comment_confirm_delete.html"
+    success_url = reverse_lazy('post_detail')
+    
+    def get_success_url(self):
+        post = self.object.post
+        return reverse('post_detail', kwargs={'pk': post.pk})
