@@ -12,7 +12,7 @@
                     <img  class="post-image" src="{{ post.post_photo }}" alt="Post Image" border="0">
                     <div class="post-interactions">
                             <button type="submit"><i class="fa-regular fa-heart"></i></button>
-                            <button type="submit"><i class="fa-regular fa-comment"></i></button>
+                            <button type="submit"><a href="{% url 'post_detail' pk=post.pk %}"><i class="fa-regular fa-comment"></i></a></button>
                             <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
                             <div class="comment-info">
                                     <p class="comments-p-home">{{ post.comments.all.count }} re-y's</p>
