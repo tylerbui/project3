@@ -2,55 +2,58 @@
 {% block content %}
 
 <div class="post-container">
-            <div class="post">
-                    <div class="user-info">
-                            <img class="post-profile-photo" src="{{ post.user.profile.profile_picture }}" alt="profile picture" border="0">
-                            <p class="username">{{ post.user.username }}</p>
-                            <p class="post-time">{{ time_since }}</p>
-                    </div>
-                    <div class="post-text">{{ post.text_content }}</div>
-                    <img  class="post-image" src="{{ post.post_photo }}" alt="Post Image" border="0">
-                    <div class="post-interactions">
-                            <button type="submit"><i class="fa-regular fa-heart"></i></button>
-                            <button type="submit"><a href="{% url 'post_detail' pk=post.pk %}"><i class="fa-regular fa-comment"></i></a></button>
-                            <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
-                            <div class="comment-info">
-                                    <p class="comments-p-home">{{ post.comments.all.count }} re-y's</p>
-                            </div>
-                    </div>
+    <div class="post">
+        <div class="user-info">
+            <img class="post-profile-photo" src="{{ post.user.profile.profile_picture }}" alt="profile picture"
+                border="0">
+            <p class="username">{{ post.user.username }}</p>
+            <p class="post-time">{{ time_since }}</p>
+        </div>
+        <div class="post-text">{{ post.text_content }}</div>
+        <img class="post-image" src="{{ post.post_photo }}" alt="Post Image" border="0">
+        <div class="post-interactions">
+            <button type="submit"><i class="fa-regular fa-heart"></i></button>
+            <button type="submit"><a href="{% url 'post_detail' pk=post.pk %}"><i
+                        class="fa-regular fa-comment"></i></a></button>
+            <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
+            <div class="comment-info">
+                <p class="comments-p-home">{{ post.comments.all.count }} re-y's</p>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="comments">
-                {% for comment in post.comments.all %}
-                    <div class="comment">
-                        <img class="post-profile-photo" src="{{ comment.user.profile.profile_picture }}" alt="profile picture" border="0">
-                        <strong>{{ comment.user.username }}</strong>
-                        <p>{{ comment.comment_text }}</p>
-                    {% if user.is_authenticated and comment.user == user %}
-                    <div class="comment-delete-form">
-                        <form method="post" action="{% url 'comment_confirm_delete' comment.id %}">
-                            {% csrf_token %}
-                            <button type="submit">Delete Comment</button>
-                        </form>
-                    </div>
-                    {% endif %}
-                    </div>
-                {% empty %}
-                    <p>No comments yet.</p>
-                {% endfor %}
-            </div>
-            
-            {% if user.is_authenticated %}
-            <div class="comment-form">
-                <form method="post">
-                    {% csrf_token %}
-                    {{ comment_form.as_p }}
-                    <button type="submit">Comment</button>
-                </form>
-            </div>
-        {% else %}
-            <p>You must be logged in to post comments.</p>
+<div class="comments">
+    {% for comment in post.comments.all %}
+    <div class="comment">
+        <img class="post-profile-photo" src="{{ comment.user.profile.profile_picture }}" alt="profile picture"
+            border="0">
+        <strong>{{ comment.user.username }}</strong>
+        {% if user.is_authenticated and comment.user == user %}
+        <div class="comment-delete-form">
+            <form method="post" action="{% url 'comment_confirm_delete' comment.id %}">
+                {% csrf_token %}
+                <button type="submit"><i class="fa-regular fa-rectangle-xmark"></i></button>
+            </form>
+        </div>
         {% endif %}
+    </div>
+    <p>{{ comment.comment_text }}</p>
+    {% empty %}
+    <p>No comments yet.</p>
+    {% endfor %}
+</div>
 
-    {% endblock %}
+{% if user.is_authenticated %}
+<div class="comment-form">
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Comment</button>
+    </form>
+</div>
+{% else %}
+<p>You must be logged in to post comments.</p>
+{% endif %}
+
+{% endblock %}

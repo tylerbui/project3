@@ -373,6 +373,7 @@ body > main > form > p > label {
 /* POST DETAIL PAGE */
 
 .comment {
+    display:flex;
     text-align: left;
     align-items: center;
     font-size: 0.9em;
@@ -385,6 +386,23 @@ body > main > form > p > label {
     margin:10px 0px;
     font-size: 0.8em;
     color:var(--secondary-text);
+    text-align: left;
+}
+
+.comment-delete-form {
+    margin-left:auto;
+}
+
+/* comment delete button X */
+body > main > div.comments > div:nth-child(1) > div > form > button {
+    background-color: var(--main-background);
+    border:none;
+    cursor: pointer;
+}
+
+body > main > div.comments > div:nth-child(1) > div > form > button:hover {
+    color:var(--main-text);
+    cursor: pointer;
 }
 
 /* comment text-area */
