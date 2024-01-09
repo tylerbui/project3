@@ -15,58 +15,33 @@ from .models import Profile, Post, Comment, Post_image
 from .forms import ProfileForm, PostForm, CommentForm, PostForm
 from django.urls import reverse_lazy
 
+def calculate_time_since(post_date):
+    now = timezone.now()
+    time_difference = now - post_date
+    seconds = time_difference.total_seconds()
+    hours = seconds // 3600
+    days = hours // 24
+    weeks = days // 7
+    years = days // 365
+
+    if hours < 24:
+        return f"{int(hours)}h"
+    elif days < 7:
+        return f"{int(days)}d"
+    elif days < 365:
+        return f"{int(weeks)}w"
+    else:
+        return f"{int(years)}y"
+
 def home(request):
     posts = Post.objects.all().order_by('-date_posted')
-    now = timezone.now()
-
-    posts_with_time = []
-    for post in posts:
-        time_difference = now - post.date_posted
-        seconds = time_difference.total_seconds()
-        hours = seconds // 3600
-        days = hours // 24
-        weeks = days // 7
-        years = days // 365
-
-        if hours < 24:
-            time_since = f"{int(hours)}h"
-        elif days < 7:
-            time_since = f"{int(days)}d"
-        elif days < 365:
-            time_since = f"{int(weeks)}w"
-        else:
-            time_since = f"{int(years)}y"
-
-        posts_with_time.append((post, time_since))
-
+    posts_with_time = [(post, calculate_time_since(post.date_posted)) for post in posts]
     return render(request, 'home.html', {'posts_with_time': posts_with_time})
 
-@login_required
 def profile(request, pk):
-    now = timezone.now()
     profile = request.user.profile
     posts = Post.objects.filter(profile=profile).order_by('-date_posted')
-
-    posts_with_time = []
-    for post in posts:
-        time_difference = now - post.date_posted
-        seconds = time_difference.total_seconds()
-        hours = seconds // 3600
-        days = hours // 24
-        weeks = days // 7
-        years = days // 365
-
-        if hours < 24:
-            time_since = f"{int(hours)}h"
-        elif days < 7:
-            time_since = f"{int(days)}d"
-        elif days < 365:
-            time_since = f"{int(weeks)}w"
-        else:
-            time_since = f"{int(years)}y"
-
-        posts_with_time.append((post, time_since))
-
+    posts_with_time = [(post, calculate_time_since(post.date_posted)) for post in posts]
     return render(request, 'profile.html', {'profile': profile, 'posts_with_time': posts_with_time})
 
 @login_required
@@ -154,6 +129,8 @@ class PostDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        post = self.get_object()
+        context['time_since'] = calculate_time_since(post.date_posted)
         context['comment_form'] = CommentForm()
         return context
 
@@ -169,7 +146,5 @@ class PostDetailView(DetailView):
             comment.save()
             return redirect(self.object.get_absolute_url())
 
-        context['comment_form'] = form
-        return self.render_to_response(context)
 
 
