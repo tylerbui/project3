@@ -10,4 +10,5 @@ urlpatterns = [
     path('main_app/create/', views.PostCreate.as_view(), name='post_create'),
     path('post/<int:pk>/delete/', views.PostDelete.as_view(), name='post_confirm_delete'),
     path('post/<int:pk>/', views.PostDetailView.as_view(), name='post_detail'),
+    path('comment/<int:pk>/delete/', views.CommentDelete.as_view(), name='comment_confirm_delete'),
 ]
