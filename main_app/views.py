@@ -11,8 +11,7 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
-
-from .models import Profile, Post, Comment, Post_image, Post_image
+from .models import Profile, Post, Comment, Post_image
 from .forms import ProfileForm, PostForm, CommentForm, PostForm
 from django.urls import reverse_lazy
 
@@ -149,16 +148,28 @@ class PostDelete(LoginRequiredMixin,DeleteView):
         return reverse('profile', kwargs={'pk': self.request.user.profile.pk})
 
 
-# Just added this for the comment form. If you guys have time check this over 
-@login_required
-def comment_form(request):
-    # reads all the comments
-    comments = Comment.objects.all()
-    if request.method == 'POST':
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'post_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        context = self.get_context_data(object=self.object)
+
         form = CommentForm(request.POST)
         if form.is_valid():
-            form.save()
-    else:
-        form = CommentForm()
-    return render(request, 'comment_form.html', {'comments': comments, 'comment_form': form})
+            comment = form.save(commit=False)
+            comment.post = self.object
+            comment.user = request.user
+            comment.save()
+            return redirect(self.object.get_absolute_url())
+
+        context['comment_form'] = form
+        return self.render_to_response(context)
+
 
