@@ -12,6 +12,10 @@ class PostForm(forms.ModelForm):
     model = Post
     fields = ['text_content', 'post_photo', 'post_tags']
 
+    def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+      self.fields['post_tags'].widget.attrs['placeholder']='Add a Tag'
+
 class CommentForm(ModelForm):
   class Meta:
     model = Comment 

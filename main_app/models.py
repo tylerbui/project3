@@ -18,7 +18,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts', null=True, blank=True)
     text_content = models.TextField(max_length=250)
-    post_photo = models.URLField()
+    post_photo = models.URLField(blank=True, null=True)
     FOOD = 'Food'
     TECH = 'Tech'
     RANDOM = 'Random'
@@ -29,7 +29,7 @@ class Post(models.Model):
         (RANDOM, 'Random'),
         (IRL, 'IRL')
     ]
-    post_tags = models.CharField(max_length=15, choices=POST_TAGS_CHOICES, blank=True, null=True)
+    post_tags = models.CharField(max_length=15)
     date_posted = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
