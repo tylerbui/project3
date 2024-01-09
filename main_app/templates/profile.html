@@ -42,7 +42,7 @@
         <img class="post-image" src="{{ post.post_photo }}" alt="Post Image" border="0">
         <div class="post-interactions">
             <button type="submit"><i class="fa-regular fa-heart"></i></button>
-            <button type="button" onclick="toggleCommentForm()"><i class="fa-regular fa-comment"></i></button>
+            <button type="button"><i class="fa-regular fa-comment"></i></button>
             <button type="submit"><i class="fa-regular fa-paper-plane"></i></button>
             <div class="post-delete">
                 <a href="{% url 'post_confirm_delete' pk=post.id %}">
@@ -50,7 +50,7 @@
                 </a>
             </div>
             <div class="comment-info">
-                    <p class="comments-p-profile">10 re-ys</p> 
+                    <p class="comments-p-profile"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.comments.all.count }} re-y's</a></p>
             </div>
         </div>
     </div>
